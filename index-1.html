@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es" class="js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dental LAROD — Odontología familiar en Ensenada</title>
+<meta name="description" content="Dental LAROD, Ensenada. Familia de dentistas con más de 40 años de experiencia combinada. Reserva tu cita en línea. Planes financieros disponibles. Se habla inglés.">
+<link rel="icon" href="assets/larod-logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfcfc;
+    --surface:#eef5f4;
+    --surface-2:#dfeeed;
+    --ink:#17302d;
+    --muted:#52706c;
+    --muted-2:#7d9b96;
+    --teal:#0d6d68;
+    --teal-dark:#094f4c;
+    --teal-tint:#e3f2f1;
+    --navy:#1c3a5c;
+    --red:#c23b32;
+    --line:rgba(23,48,45,0.12);
+    --line-strong:rgba(23,48,45,0.24);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; overflow-x:hidden; max-width:100%;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Atkinson Hyperlegible', sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    max-width:100%;
+    font-size:16px;
+  }
+  ::selection{background:var(--teal); color:#fff;}
+
+  h1,h2,h3{
+    font-family:'Atkinson Hyperlegible', sans-serif;
+    font-weight:700;
+    line-height:1.15;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+  img{max-width:100%; display:block;}
+  .num{ font-variant-numeric:tabular-nums; }
+
+  /* ---------- skip link (accesibilidad de teclado) ---------- */
+  .skip-link{
+    position:absolute; left:12px; top:-60px; z-index:200;
+    background:var(--teal); color:#fff;
+    padding:12px 18px; font-weight:700;
+    transition:top .2s ease;
+  }
+  .skip-link:focus{ top:12px; }
+
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible, input:focus-visible{
+    outline:3px solid var(--navy);
+    outline-offset:2px;
+  }
+
+  .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .5s ease, transform .5s ease; }
+  html.js .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1; transform:none; transition:none;} }
+
+  /* ---------- diente: forma insignia, tomada del propio logo ---------- */
+  .tooth-clip{ clip-path:url(#toothClip); }
+
+  /* ================= NAV ================= */
+  header.nav{
+    position:sticky; top:0; z-index:60;
+    background:rgba(251,252,252,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 24px;
+  }
+  .nav-brand{ display:flex; align-items:center; gap:10px; }
+  .nav-brand img{ height:40px; width:auto; }
+  .nav-brand span{ font-weight:700; font-size:1.05rem; color:var(--navy); }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 18px;
+    background:var(--teal); color:#fff;
+    font-weight:700; font-size:0.92rem;
+    border:none;
+  }
+  .nav-cta:hover{ background:var(--teal-dark); }
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    padding:0;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-media{
+    position:relative;
+    min-height:64svh; min-height:64vh;
+    display:flex; align-items:flex-end;
+  }
+  .hero-media img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  .hero-media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(9,20,19,0.88) 0%, rgba(9,20,19,0.45) 42%, rgba(9,20,19,0.12) 68%, transparent 100%);
+  }
+  .hero-content{
+    position:relative; z-index:1;
+    padding:36px 0 40px;
+    width:100%;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.78rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color:#fff; background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.35);
+    padding:7px 14px; margin-bottom:16px;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(1.9rem, 5.5vw, 3rem);
+    max-width:16ch;
+    margin-bottom:14px;
+  }
+  .hero p.sub{
+    color:rgba(255,255,255,0.88);
+    font-size:1.05rem; max-width:46ch; margin-bottom:24px;
+  }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px;
+    font-size:0.94rem; font-weight:700;
+    border:2px solid transparent;
+    transition:background .15s ease, transform .15s ease, border-color .15s ease;
+  }
+  .btn-solid{ background:var(--teal); color:#fff; }
+  .btn-solid:hover{ background:var(--teal-dark); transform:translateY(-1px); }
+  .btn-outline{ background:rgba(255,255,255,0.08); color:#fff; border-color:rgba(255,255,255,0.6); }
+  .btn-outline:hover{ background:rgba(255,255,255,0.18); }
+  .btn svg{ width:18px; height:18px; flex:none; }
+
+  /* ================= TRUST BAND ================= */
+  .trust-band{ background:var(--navy); border-bottom:1px solid var(--line); }
+  .trust-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1px;
+    background:rgba(255,255,255,0.14);
+  }
+  @media(min-width:820px){ .trust-grid{ grid-template-columns:repeat(4,1fr); } }
+  .trust-cell{
+    background:var(--navy);
+    padding:22px 20px;
+    text-align:center;
+  }
+  .trust-cell .tn{ font-size:1.5rem; font-weight:700; color:#fff; }
+  .trust-cell .tl{ font-size:0.8rem; color:rgba(255,255,255,0.72); margin-top:4px; }
+
+  /* ================= BOOKING SECTION ================= */
+  .booking-section{ padding:52px 0 60px; border-bottom:1px solid var(--line); }
+  @media(min-width:720px){ .booking-section{ padding:76px 0 84px; } }
+
+  .sec-head{ max-width:600px; margin:0 auto 30px; text-align:center; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.76rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--teal); margin-bottom:12px;
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--teal); }
+  .sec-head h2{ font-size:clamp(1.5rem, 4vw, 2.1rem); margin-bottom:10px; }
+  .sec-head p{ color:var(--muted); font-size:1rem; }
+
+  .booker{
+    max-width:540px; margin:0 auto; width:100%; min-width:0;
+    background:var(--surface);
+    border:1px solid var(--line-strong);
+  }
+
+  .wizard-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 20px;
+    border-bottom:1px solid var(--line);
+  }
+  .wizard-dots{ display:flex; gap:7px; }
+  .wdot{
+    width:7px; height:7px; border-radius:50%; flex:none;
+    background:var(--line-strong);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .wdot.done{ background:var(--muted); }
+  .wdot.current{ background:var(--teal); transform:scale(1.4); }
+  .wizard-back{
+    flex:none; background:none; border:none; padding:2px 0;
+    font-size:0.82rem; font-weight:700; color:var(--muted);
+    visibility:hidden;
+  }
+  .wizard-back.show{ visibility:visible; }
+  .wizard-back:hover{ color:var(--ink); cursor:pointer; }
+
+  .step-panels{ position:relative; min-width:0; }
+  .step-panel{ display:none; }
+  .step-panel.active{ display:block; padding:26px 20px 28px; }
+  @media(min-width:640px){ .step-panel.active{ padding:34px 32px 36px; } }
+  html.js .step-panel.active.dir-fwd{ animation:stepInFwd .3s ease; }
+  html.js .step-panel.active.dir-back{ animation:stepInBack .3s ease; }
+  @keyframes stepInFwd{ from{opacity:0; transform:translateX(14px);} to{opacity:1; transform:translateX(0);} }
+  @keyframes stepInBack{ from{opacity:0; transform:translateX(-14px);} to{opacity:1; transform:translateX(0);} }
+  @media (prefers-reduced-motion:reduce){ html.js .step-panel.active.dir-fwd, html.js .step-panel.active.dir-back{ animation:none; } }
+
+  .step-eyebrow{
+    display:block; font-size:0.74rem; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:10px;
+  }
+  .step-q{ font-size:1.35rem; font-weight:700; margin-bottom:22px; line-height:1.2; }
+  @media(min-width:640px){ .step-q{ font-size:1.6rem; } }
+
+  .field-input-lg{
+    display:block; width:100%;
+    background:#fff;
+    border:2px solid var(--line-strong);
+    color:var(--ink);
+    font-family:'Atkinson Hyperlegible'; font-size:1.1rem; font-weight:400;
+    padding:14px 16px;
+  }
+  @media(min-width:640px){ .field-input-lg{ font-size:1.2rem; } }
+  .field-input-lg::placeholder{ color:var(--muted-2); }
+  .field-input-lg:focus{ outline:none; border-color:var(--teal); }
+
+  .wizard-continue{
+    margin-top:20px; padding:14px 26px;
+    background:var(--teal); color:#fff; border:none;
+    font-weight:700; font-size:0.94rem;
+    transition:background .2s ease;
+  }
+  .wizard-continue:disabled{ background:var(--surface-2); color:var(--muted-2); cursor:not-allowed; }
+  .wizard-continue:not(:disabled):hover{ background:var(--teal-dark); cursor:pointer; }
+
+  /* --- calendar --- */
+  .month-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; width:100%; }
+  .month-row .month{ font-size:0.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+
+  .day-scroller{
+    display:grid; grid-auto-flow:column; grid-auto-columns:60px; gap:8px;
+    overflow-x:auto; overflow-y:hidden; padding-bottom:6px;
+    max-width:100%; touch-action:pan-x; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch;
+  }
+  .day-box{
+    background:#fff; border:2px solid var(--line);
+    padding:9px 4px; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .day-box .wd{ font-size:0.6rem; font-weight:700; color:var(--muted-2); letter-spacing:0.05em; text-transform:uppercase; }
+  .day-box .dn{ font-size:1.2rem; font-weight:700; font-variant-numeric:tabular-nums; }
+  .day-box .mo{ font-size:0.58rem; font-weight:700; color:var(--muted-2); text-transform:uppercase; }
+  .day-box:hover{ border-color:var(--teal); cursor:pointer; }
+  .day-box.selected{ background:var(--teal); border-color:var(--teal); color:#fff; }
+  .day-box.selected .wd, .day-box.selected .mo{ color:rgba(255,255,255,0.8); }
+
+  .cal-desktop{ display:none; width:100%; }
+  .cal-nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+  .cal-month-label{ font-size:1rem; font-weight:700; text-transform:capitalize; }
+  .cal-nav-btn{
+    width:30px; height:30px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--line-strong); background:#fff; color:var(--ink);
+    font-size:1.05rem; line-height:1;
+  }
+  .cal-nav-btn:hover:not(:disabled){ border-color:var(--teal); cursor:pointer; }
+  .cal-nav-btn:disabled{ opacity:0.3; cursor:not-allowed; }
+  .cal-weekdays{ display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-bottom:6px; }
+  .cal-weekdays span{ text-align:center; font-size:0.64rem; font-weight:700; color:var(--muted-2); text-transform:uppercase; }
+  .cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:6px; }
+  .cal-cell{
+    position:relative; aspect-ratio:1/1;
+    display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--line); background:#fff;
+    font-size:0.9rem; font-weight:700; font-variant-numeric:tabular-nums;
+  }
+  .cal-cell.empty{ border-color:transparent; pointer-events:none; background:transparent; }
+  .cal-cell:not(.empty):not(.disabled):hover{ border-color:var(--teal); cursor:pointer; }
+  .cal-cell.disabled{ opacity:0.3; pointer-events:none; }
+  .cal-cell.today:not(.selected){ border-color:var(--navy); }
+  .cal-cell.selected{ background:var(--teal); border-color:var(--teal); color:#fff; }
+
+  .day-scroller-wrap{ width:100%; }
+  @media(min-width:900px){ .day-scroller-wrap{ display:none; } .cal-desktop{ display:block; } }
+
+  .hours-note{ margin-top:14px; font-size:0.82rem; color:var(--muted); }
+
+  /* --- horarios --- */
+  .time-grid{ display:flex; flex-wrap:wrap; gap:8px; width:100%; }
+  .pill{
+    font-size:0.9rem; font-weight:700; font-variant-numeric:tabular-nums;
+    padding:11px 16px; border:2px solid var(--line); background:#fff; color:var(--ink);
+  }
+  .pill:hover:not(.taken){ border-color:var(--teal); cursor:pointer; }
+  .pill.selected{ background:var(--teal); border-color:var(--teal); color:#fff; }
+  .pill.taken{ opacity:0.35; text-decoration:line-through; cursor:not-allowed; }
+
+  /* --- motivo de consulta --- */
+  .svc-list{ display:flex; flex-direction:column; gap:8px; width:100%; text-align:left; }
+  .svc{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 16px; border:2px solid var(--line); background:#fff;
+  }
+  .svc:hover{ border-color:var(--teal); cursor:pointer; }
+  .svc.selected{ border-color:var(--teal); background:var(--teal-tint); }
+  .svc-icon{
+    width:38px; height:38px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--surface-2); border:2px solid var(--line-strong); color:var(--teal);
+    border-radius:50%;
+  }
+  .svc-icon svg{ width:19px; height:19px; }
+  .svc-name{ font-size:0.98rem; font-weight:700; }
+
+  /* --- confirmación --- */
+  .summary-text{ font-size:1.05rem; color:var(--ink); line-height:1.6; margin-bottom:22px; }
+  .summary-text b{ color:var(--teal); }
+  .cta-book{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:16px 28px; background:var(--teal); color:#fff; border:none;
+    font-weight:700; font-size:0.98rem;
+  }
+  .cta-book:hover{ background:var(--teal-dark); }
+  .cta-book:disabled{ background:var(--surface-2); color:var(--muted-2); cursor:not-allowed; }
+  .cta-book svg{ width:19px; height:19px; }
+  .integration-note{ margin-top:16px; font-size:0.8rem; color:var(--muted-2); display:flex; align-items:center; gap:8px; }
+  .integration-note .dot{ width:6px; height:6px; border-radius:50%; background:var(--muted-2); flex:none; }
+
+  /* ================= SERVICIOS ================= */
+  .services-section{ padding:56px 0; border-bottom:1px solid var(--line); background:var(--surface); }
+  .svc-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media(min-width:720px){ .svc-grid{ grid-template-columns:repeat(2,1fr); } }
+  .svc-row{ background:var(--bg); padding:22px 24px; display:flex; align-items:flex-start; gap:16px; }
+  .svc-row .svc-icon{ width:44px; height:44px; }
+  .svc-row .svc-icon svg{ width:22px; height:22px; }
+  .svc-row .name{ font-weight:700; font-size:1.02rem; margin-bottom:4px; }
+  .svc-row .desc{ font-size:0.86rem; color:var(--muted); line-height:1.5; }
+  .financing-banner{
+    margin-top:32px; padding:24px 26px;
+    background:var(--navy); color:#fff;
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .financing-banner p{ font-size:1rem; max-width:44ch; }
+  .financing-banner strong{ display:block; font-size:1.1rem; margin-bottom:4px; }
+
+  /* ================= COMUNIDAD ================= */
+  .community-section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  .community-grid{ display:grid; grid-template-columns:1fr; gap:36px; align-items:center; }
+  @media(min-width:860px){ .community-grid{ grid-template-columns:0.9fr 1.1fr; gap:48px; } }
+  .community-photo{ width:100%; aspect-ratio:4/3; object-fit:cover; max-width:440px; }
+  .community-copy h2{ font-size:clamp(1.5rem, 3.6vw, 2rem); margin-bottom:14px; }
+  .community-copy > p{ color:var(--muted); font-size:1rem; margin-bottom:22px; max-width:50ch; }
+  .value-list{ display:flex; flex-direction:column; gap:14px; }
+  .value-item{ display:flex; align-items:flex-start; gap:12px; }
+  .value-icon{
+    width:32px; height:32px; flex:none; border-radius:50%;
+    background:var(--teal-tint); color:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .value-icon svg{ width:17px; height:17px; }
+  .value-item .vt{ font-weight:700; font-size:0.96rem; }
+  .value-item .vd{ font-size:0.86rem; color:var(--muted); }
+
+  /* ================= EDUCACIÓN ================= */
+  .education-section{ padding:56px 0; border-bottom:1px solid var(--line); background:var(--surface); }
+  .education-grid{ display:grid; grid-template-columns:1fr; gap:32px; align-items:center; }
+  @media(min-width:860px){ .education-grid{ grid-template-columns:1fr 0.85fr; gap:44px; } }
+  .education-copy h2{ font-size:clamp(1.4rem, 3.4vw, 1.9rem); margin-bottom:14px; }
+  .education-copy p{ color:var(--muted); font-size:0.98rem; margin-bottom:12px; max-width:52ch; }
+  .education-photo-wrap{ position:relative; max-width:400px; margin:0 auto; }
+  .education-photo{ width:100%; aspect-ratio:4/3; object-fit:cover; }
+  .education-tag{
+    display:inline-block; margin-top:14px;
+    font-size:0.76rem; font-weight:700; color:var(--muted-2);
+    letter-spacing:0.03em;
+  }
+
+  /* ================= EQUIPO ================= */
+  .team-section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  .team-grid{ display:grid; grid-template-columns:1fr; gap:32px; align-items:center; }
+  @media(min-width:860px){ .team-grid{ grid-template-columns:1.1fr 0.9fr; gap:44px; } }
+  .team-photo{ width:100%; aspect-ratio:4/3; object-fit:cover; max-width:460px; }
+  .team-copy h2{ font-size:clamp(1.5rem, 3.6vw, 2rem); margin-bottom:14px; }
+  .team-copy p{ color:var(--muted); font-size:1rem; max-width:48ch; }
+
+  /* ================= RESEÑAS ================= */
+  .reviews-section{ padding:56px 0; border-bottom:1px solid var(--line); background:var(--navy); }
+  .reviews-section .eyebrow{ color:#8fd4cf; }
+  .reviews-section .eyebrow .dot{ background:#8fd4cf; }
+  .reviews-section .sec-head h2{ color:#fff; }
+  .reviews-section .sec-head p{ color:rgba(255,255,255,0.75); }
+  .review-actions{
+    display:flex; flex-wrap:wrap; gap:16px; justify-content:center; margin-top:8px;
+  }
+  .review-card{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.18);
+    padding:26px 24px; max-width:280px;
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px;
+  }
+  .review-card svg{ width:30px; height:30px; }
+  .review-card h3{ color:#fff; font-size:1.05rem; }
+  .review-card p{ color:rgba(255,255,255,0.72); font-size:0.86rem; }
+  .review-card .btn{ margin-top:6px; }
+
+  /* ================= UBICACIÓN ================= */
+  .loc-section{ padding:56px 0; border-bottom:1px solid var(--line); }
+  .loc-grid{ display:grid; grid-template-columns:1fr; gap:32px; }
+  @media(min-width:900px){ .loc-grid{ grid-template-columns:1fr 1fr; } }
+  .loc-block h3{ font-size:0.78rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--teal); margin-bottom:12px; }
+  .loc-block address{ font-style:normal; line-height:1.7; font-size:1rem; }
+  .loc-block .addr-link{ display:inline-block; margin-top:10px; color:var(--teal); font-weight:700; font-size:0.92rem; border-bottom:2px solid var(--teal); }
+  .contact-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+  .contact-row .btn{ padding:11px 18px; font-size:0.88rem; }
+  .contact-row .btn-line{ background:transparent; color:var(--ink); border:2px solid var(--line-strong); }
+  .contact-row .btn-line:hover{ border-color:var(--teal); color:var(--teal); }
+
+  .hours-table{ width:100%; border-collapse:collapse; }
+  .hours-table tr{ border-bottom:1px solid var(--line); }
+  .hours-table tr:last-child{ border-bottom:none; }
+  .hours-table td{ padding:10px 0; font-size:0.95rem; }
+  .hours-table td:first-child{ color:var(--muted); }
+  .hours-table td:last-child{ text-align:right; font-variant-numeric:tabular-nums; font-weight:700; }
+  .hours-note-small{ margin-top:14px; font-size:0.82rem; color:var(--muted-2); }
+
+  .map-frame{ width:100%; height:320px; border:1px solid var(--line-strong); margin-top:28px; }
+
+  /* ================= FOOTER ================= */
+  footer{ padding:32px 0; background:var(--navy); }
+  .foot-inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+  .foot-inner .fl{ font-size:0.8rem; color:rgba(255,255,255,0.6); }
+  .foot-links{ display:flex; gap:18px; flex-wrap:wrap; }
+  .foot-links a{ font-size:0.86rem; color:rgba(255,255,255,0.85); }
+  .foot-links a:hover{ color:#fff; text-decoration:underline; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="toothClip" clipPathUnits="objectBoundingBox">
+      <path d="M0.50 0.08 C0.35 0.08 0.25 0.15 0.22 0.28 C0.20 0.36 0.22 0.45 0.25 0.55 L0.30 0.85 C0.31 0.90 0.35 0.92 0.38 0.88 L0.45 0.68 C0.46 0.65 0.54 0.65 0.55 0.68 L0.62 0.88 C0.65 0.92 0.69 0.90 0.70 0.85 L0.75 0.55 C0.78 0.45 0.80 0.36 0.78 0.28 C0.75 0.15 0.65 0.08 0.50 0.08 Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<a href="#reservar" class="skip-link">Saltar a reservar cita</a>
+
+<header class="nav">
+  <div class="nav-inner wrap">
+    <a href="#top" class="nav-brand">
+      <img src="assets/larod-logo.jpg" alt="Dental LAROD">
+    </a>
+    <a class="nav-cta" href="#reservar">Reservar cita</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-media">
+      <img src="assets/larod-exterior.jpg" alt="Fachada de Dental LAROD en Ensenada, con un arcoíris de fondo">
+      <div class="hero-content wrap">
+        <span class="hero-eyebrow">Familia de dentistas · Ensenada desde 2009</span>
+        <h1>Tu sonrisa, cuidada por gente que conoces</h1>
+        <p class="sub">Más de 40 años de experiencia combinada. Planes financieros disponibles. Se habla inglés.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#reservar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="1.5"/><line x1="3.5" y1="9.5" x2="20.5" y2="9.5"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg>
+            Reservar cita
+          </a>
+          <a class="btn btn-outline" href="tel:6461562917">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3c0-.6.4-1 1-1h3.6c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1.1L6.6 10.8Z"/></svg>
+            Llamar ahora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRUST BAND ============ -->
+  <section class="trust-band">
+    <div class="wrap">
+      <div class="trust-grid">
+        <div class="trust-cell">
+          <div class="tn num">2009</div>
+          <div class="tl">Fundada en Ensenada</div>
+        </div>
+        <div class="trust-cell">
+          <div class="tn">Familiar</div>
+          <div class="tl">Dirigida por dentistas de la misma familia</div>
+        </div>
+        <div class="trust-cell">
+          <div class="tn">Accesible</div>
+          <div class="tl">Entrada para sillas de ruedas, planes de bajo costo</div>
+        </div>
+        <div class="trust-cell">
+          <div class="tn">EN · ES</div>
+          <div class="tl">Atendemos en inglés y español</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOOKING ============ -->
+  <section class="booking-section" id="reservar">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow"><span class="dot"></span>RESERVA TU CITA</span>
+        <h2>¿Cuándo te queda bien?</h2>
+        <p>Un paso a la vez. Menos de un minuto.</p>
+      </div>
+
+      <div class="booker reveal">
+        <div class="wizard-head">
+          <button type="button" class="wizard-back" id="wizardBack" aria-label="Paso anterior">‹ Atrás</button>
+          <div class="wizard-dots" id="wizardDots">
+            <span class="wdot" data-i="1"></span>
+            <span class="wdot" data-i="2"></span>
+            <span class="wdot" data-i="3"></span>
+            <span class="wdot" data-i="4"></span>
+            <span class="wdot" data-i="5"></span>
+            <span class="wdot" data-i="6"></span>
+            <span class="wdot" data-i="7"></span>
+          </div>
+        </div>
+
+        <div class="step-panels" id="stepPanels">
+
+          <!-- STEP 1: fecha -->
+          <div class="step-panel" data-step="1">
+            <span class="step-eyebrow">Paso 1 de 7</span>
+            <h3 class="step-q">¿Qué día?</h3>
+
+            <div class="cal-desktop">
+              <div class="cal-nav">
+                <button type="button" class="cal-nav-btn" id="calPrev" aria-label="Mes anterior">‹</button>
+                <span class="cal-month-label" id="calMonthLabel">—</span>
+                <button type="button" class="cal-nav-btn" id="calNext" aria-label="Mes siguiente">›</button>
+              </div>
+              <div class="cal-weekdays"><span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span></div>
+              <div class="cal-grid" id="calGrid" role="listbox" aria-label="Selecciona un día"></div>
+            </div>
+
+            <div class="day-scroller-wrap">
+              <div class="month-row">
+                <span class="month" id="monthLabel">—</span>
+                <span class="month" id="todayLabel">—</span>
+              </div>
+              <div class="day-scroller" id="dayScroller" role="listbox" aria-label="Selecciona un día"></div>
+            </div>
+
+            <p class="hours-note">Lun–Vie 9:00 AM–6:00 PM · Sáb 9:00 AM–2:00 PM</p>
+          </div>
+
+          <!-- STEP 2: hora -->
+          <div class="step-panel" data-step="2">
+            <span class="step-eyebrow">Paso 2 de 7</span>
+            <h3 class="step-q">¿A qué hora?</h3>
+            <div class="time-grid" id="timeGrid" role="listbox" aria-label="Selecciona un horario"></div>
+          </div>
+
+          <!-- STEP 3: motivo -->
+          <div class="step-panel" data-step="3">
+            <span class="step-eyebrow">Paso 3 de 7</span>
+            <h3 class="step-q">¿Qué necesitas?</h3>
+            <div class="svc-list" id="svcList" role="listbox" aria-label="Selecciona el motivo de tu consulta"></div>
+          </div>
+
+          <!-- STEP 4: nombre -->
+          <div class="step-panel" data-step="4">
+            <span class="step-eyebrow">Paso 4 de 7</span>
+            <h3 class="step-q">¿Cómo te llamas?</h3>
+            <input type="text" id="custName" class="field-input-lg" placeholder="Tu nombre" autocomplete="name">
+            <button type="button" class="wizard-continue" id="nameContinue" disabled>Continuar</button>
+          </div>
+
+          <!-- STEP 5: teléfono -->
+          <div class="step-panel" data-step="5">
+            <span class="step-eyebrow">Paso 5 de 7</span>
+            <h3 class="step-q">¿Tu teléfono?</h3>
+            <input type="tel" id="custPhone" class="field-input-lg" placeholder="646 000 0000" autocomplete="tel">
+            <button type="button" class="wizard-continue" id="phoneContinue" disabled>Continuar</button>
+          </div>
+
+          <!-- STEP 6: correo -->
+          <div class="step-panel" data-step="6">
+            <span class="step-eyebrow">Paso 6 de 7</span>
+            <h3 class="step-q">¿Tu correo?</h3>
+            <input type="email" id="custEmail" class="field-input-lg" placeholder="tu@correo.com" autocomplete="email">
+            <button type="button" class="wizard-continue" id="emailContinue" disabled>Continuar</button>
+          </div>
+
+          <!-- STEP 7: confirmar -->
+          <div class="step-panel" data-step="7">
+            <span class="step-eyebrow">Paso 7 de 7</span>
+            <h3 class="step-q">Ya casi</h3>
+            <p class="summary-text" id="summaryText"></p>
+            <button class="cta-book" id="ctaBook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="16" rx="1.5"/><line x1="3.5" y1="9.5" x2="20.5" y2="9.5"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/><path d="M8.5 14.5l2 2 4.5-4.5"/></svg>
+              <span id="ctaLabel">Confirmar cita</span>
+            </button>
+            <p class="integration-note" id="integrationNote"><span class="dot"></span>Al confirmar, tu cita se crea directo en el calendario del consultorio.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICIOS ============ -->
+  <section class="services-section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow"><span class="dot"></span>SERVICIOS</span>
+        <h2>Cómo te podemos ayudar</h2>
+        <p>Los precios dependen del diagnóstico — te los damos claros desde tu primera visita.</p>
+      </div>
+
+      <div class="svc-grid reveal" id="svcGridDisplay"></div>
+
+      <div class="financing-banner reveal">
+        <p><strong>Planes financieros disponibles</strong>Para que el costo nunca sea la razón de posponer tu salud bucal. Pregunta por nuestros planes familiares.</p>
+        <a class="btn btn-solid" href="#reservar">Preguntar en mi cita</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMUNIDAD Y ACCESIBILIDAD ============ -->
+  <section class="community-section">
+    <div class="wrap">
+      <div class="community-grid reveal">
+        <img class="community-photo tooth-clip" src="assets/larod-patient-care.jpg" alt="El equipo de Dental LAROD atendiendo con cariño a un paciente">
+        <div class="community-copy">
+          <span class="eyebrow"><span class="dot"></span>COMUNIDAD Y ACCESIBILIDAD</span>
+          <h2>Aquí caben todos</h2>
+          <p>Llevamos más de 15 años como fuente de información para la comunidad de Ensenada, buscando siempre la manera de apoyar a quienes más lo necesitan.</p>
+          <div class="value-list">
+            <div class="value-item">
+              <span class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-7 8-7s8 3 8 7"/></svg></span>
+              <div><div class="vt">Clientes con discapacidades</div><div class="vd">Entrada accesible y atención pensada para todos.</div></div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M4 12a8 8 0 0 1 16 0M4 12a8 8 0 0 0 16 0"/></svg></span>
+              <div><div class="vt">Atención en inglés</div><div class="vd">English spoken here — for our cross-border patients.</div></div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.2 6.2l2.1 2.1M17.7 15.7l2.1 2.1M3 12h3M18 12h3M4.2 17.8l2.1-2.1M17.7 8.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg></span>
+              <div><div class="vt">Planes de bajo costo</div><div class="vd">Servicios financieros y planes familiares para apoyar a la comunidad.</div></div>
+            </div>
+            <div class="value-item">
+              <span class="value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V6a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0 0 4h13"/></svg></span>
+              <div><div class="vt">Fuente de información</div><div class="vd">Nos mantenemos capacitados para explicarte, no solo tratarte.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCACIÓN DENTAL ============ -->
+  <section class="education-section">
+    <div class="wrap">
+      <div class="education-grid reveal">
+        <div class="education-copy">
+          <span class="eyebrow"><span class="dot"></span>EDUCACIÓN DENTAL</span>
+          <h2>No tenemos miedo de mostrarte lo real</h2>
+          <p>Parte de ser fuente de información es no esconder lo que vemos. Te explicamos lo que encontramos en tu boca, con fotos reales cuando ayuda a entender, para que decidas tu tratamiento con toda la información — no con miedo.</p>
+          <p>Si algo te preocupa, pregúntanos. Preferimos una consulta con muchas preguntas que una sorpresa después.</p>
+        </div>
+        <div class="education-photo-wrap">
+          <img class="education-photo tooth-clip" src="assets/larod-intraoral-clinical.jpg" alt="Ejemplo real de examinación dental usado con fines educativos">
+          <span class="education-tag">Ejemplo real, usado con fines educativos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EQUIPO ============ -->
+  <section class="team-section">
+    <div class="wrap">
+      <div class="team-grid reveal">
+        <div class="team-copy">
+          <span class="eyebrow"><span class="dot"></span>EL EQUIPO</span>
+          <h2>Una familia de dentistas</h2>
+          <p>Dental LAROD nació en 2009 de una familia de dentistas, con más de 40 años de experiencia combinada cuidando sonrisas en Ensenada.</p>
+        </div>
+        <img class="team-photo tooth-clip" src="assets/larod-team.jpg" alt="Equipo de Dental LAROD en el consultorio">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESEÑAS ============ -->
+  <section class="reviews-section">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow"><span class="dot"></span>TU OPINIÓN NOS AYUDA</span>
+        <h2>Cuéntale a otros tu experiencia</h2>
+        <p>Nos ayuda muchísimo a que más familias en Ensenada nos encuentren.</p>
+      </div>
+      <div class="review-actions reveal">
+        <div class="review-card">
+          <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.07C24 5.4 18.6 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07Z"/></svg>
+          <h3>Facebook</h3>
+          <p>Déjanos una reseña o mándanos mensaje directo.</p>
+          <a class="btn btn-solid" href="https://www.facebook.com/share/1CrKnBep1F/" target="_blank" rel="noopener">Ir a Facebook</a>
+        </div>
+        <div class="review-card">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1Z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.25 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.85A11 11 0 0 0 12 23Z"/><path fill="#FBBC05" d="M5.84 14.09A6.6 6.6 0 0 1 5.5 12c0-.73.12-1.43.34-2.09V7.06H2.18A11 11 0 0 0 1 12c0 1.78.43 3.46 1.18 4.94l3.66-2.85Z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1a11 11 0 0 0-9.82 6.06l3.66 2.85C6.71 7.31 9.14 5.38 12 5.38Z"/></svg>
+          <h3>Google</h3>
+          <p>Busca "Dental LAROD Ensenada" y comparte tu experiencia.</p>
+          <a class="btn btn-solid" href="https://www.google.com/maps/search/?api=1&query=Dental+LAROD+Ensenada+Baja+California" target="_blank" rel="noopener">Ir a Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ UBICACIÓN ============ -->
+  <section class="loc-section" id="ubicacion">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow"><span class="dot"></span>UBICACIÓN Y CONTACTO</span>
+        <h2>Encuéntranos</h2>
+      </div>
+
+      <div class="loc-grid reveal">
+        <div class="loc-block">
+          <h3>Dirección</h3>
+          <address>
+            Calle Calafia 493, espacio 5<br>
+            Colonia Popular 89<br>
+            22812 Ensenada, Baja California, México
+          </address>
+          <a class="addr-link" href="https://www.google.com/maps/search/?api=1&query=Calle+Calafia+493+espacio+5+Ensenada+Baja+California" target="_blank" rel="noopener">Cómo llegar →</a>
+
+          <div class="contact-row">
+            <a class="btn btn-solid" href="tel:6461562917">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.7 3.6 4.9 6.3 6.3l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3c0-.6.4-1 1-1h3.6c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1.1L6.6 10.8Z"/></svg>
+              646 156 2917
+            </a>
+            <a class="btn btn-line" href="tel:6461358042">646 135 8042</a>
+            <a class="btn btn-line" href="mailto:Laroddental@gmail.com">Laroddental@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="loc-block">
+          <h3>Horario</h3>
+          <table class="hours-table" id="hoursTable"></table>
+          <p class="hours-note-small">Colonia Popular 89, a unos 5 km de la carretera principal — te recomendamos usar el mapa para llegar sin problema.</p>
+        </div>
+      </div>
+
+      <iframe class="map-frame reveal" src="https://www.google.com/maps?q=Calle+Calafia+493+espacio+5,+Colonia+Popular+89,+22812+Ensenada,+B.C.,+M%C3%A9xico&output=embed" title="Dental LAROD en Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span class="fl">DENTAL LAROD · ENSENADA, B.C.</span>
+    <div class="foot-links">
+      <a href="https://www.facebook.com/share/1CrKnBep1F/" target="_blank" rel="noopener">Facebook</a>
+      <a href="mailto:Laroddental@gmail.com">Laroddental@gmail.com</a>
+      <a href="tel:6461562917">646 156 2917</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var HOURS = {
+    // 0=domingo ... 6=sábado — CERRADO domingo (confírmanos si es distinto)
+    0:null,
+    1:{open:9, close:18},
+    2:{open:9, close:18},
+    3:{open:9, close:18},
+    4:{open:9, close:18},
+    5:{open:9, close:18},
+    6:{open:9, close:14}
+  };
+  var WD = ['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
+  var WD_FULL = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  var MO = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+
+  var SERVICES = [
+    {id:'limpieza', name:'Limpieza dental', desc:'Revisión y limpieza de rutina.', icon:'clean'},
+    {id:'urgencia', name:'Urgencia / dolor', desc:'Dolor, infección o trauma dental.', icon:'alert'},
+    {id:'coronas', name:'Coronas y puentes', desc:'Restauración de piezas dañadas.', icon:'crown'},
+    {id:'ortodoncia', name:'Ortodoncia', desc:'Brackets y alineación dental.', icon:'braces'},
+    {id:'endodoncia', name:'Endodoncia', desc:'Tratamiento de conducto.', icon:'tooth'},
+    {id:'blanqueamiento', name:'Blanqueamiento', desc:'Estética dental.', icon:'sun'},
+    {id:'general', name:'Consulta general', desc:'Revisión, diagnóstico y plan de tratamiento.', icon:'check'}
+  ];
+
+  var ICON_ATTRS = 'viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
+  var ICONS = {
+    clean: '<svg '+ICON_ATTRS+'><path d="M12 3 C12 3 6 12 6 16 A6 6 0 0 0 18 16 C18 12 12 3 12 3 Z"/></svg>',
+    alert: '<svg '+ICON_ATTRS+'><path d="M12 4 L21 19 L3 19 Z"/><line x1="12" y1="9.5" x2="12" y2="14"/><circle cx="12" cy="16.7" r="0.7" fill="currentColor" stroke="none"/></svg>',
+    crown: '<svg '+ICON_ATTRS+'><path d="M4 17 L4 9 L8 13 L12 6 L16 13 L20 9 L20 17 Z"/></svg>',
+    braces: '<svg '+ICON_ATTRS+'><line x1="4" y1="12" x2="20" y2="12"/><rect x="6" y="9" width="3" height="6" rx="1"/><rect x="10.5" y="9" width="3" height="6" rx="1"/><rect x="15" y="9" width="3" height="6" rx="1"/></svg>',
+    tooth: '<svg '+ICON_ATTRS+'><path d="M8 4 C6 4 5 6 5 9 C5 12 6 16 7 19 C7.5 20.5 8.5 20.5 9 19 L10 14 L14 14 L15 19 C15.5 20.5 16.5 20.5 17 19 C18 16 19 12 19 9 C19 6 18 4 16 4 C14.5 4 13.5 5 12 5 C10.5 5 9.5 4 8 4 Z"/></svg>',
+    sun: '<svg '+ICON_ATTRS+'><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.9" y1="4.9" x2="7" y2="7"/><line x1="17" y1="17" x2="19.1" y2="19.1"/><line x1="4.9" y1="19.1" x2="7" y2="17"/><line x1="17" y1="7" x2="19.1" y2="4.9"/></svg>',
+    check: '<svg '+ICON_ATTRS+'><circle cx="12" cy="12" r="8"/><path d="M8.5 12.3l2.4 2.4 4.4-4.9"/></svg>'
+  };
+
+  var state = { date:null, time:null, service:null, name:'', phone:'', email:'' };
+
+  function pad(n){ return n<10 ? '0'+n : ''+n; }
+  function dateKey(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+
+  // ---------- disponibilidad ----------
+  // MOCK mientras no haya backend desplegado. Intenta el endpoint real primero.
+  function hash(str){
+    var h = 0;
+    for (var i=0;i<str.length;i++){ h = (h*31 + str.charCodeAt(i)) >>> 0; }
+    return h;
+  }
+  function mockAvailability(dKey){
+    return { isTaken: function(label){ return (hash(dKey+label) % 5) === 0; } };
+  }
+  async function getAvailability(dKey){
+    try {
+      var res = await fetch('/api/availability?date=' + dKey);
+      if (!res.ok) throw new Error('not deployed');
+      var data = await res.json();
+      var taken = data.taken || [];
+      return { isTaken: function(label){ return taken.indexOf(label) > -1; } };
+    } catch (err) {
+      return mockAvailability(dKey);
+    }
+  }
+
+  var today = new Date();
+  today.setHours(0,0,0,0);
+
+  function nextOpenDay(fromDate){
+    var d = new Date(fromDate);
+    var guard = 0;
+    while (!HOURS[d.getDay()] && guard < 14){ d.setDate(d.getDate()+1); guard++; }
+    return d;
+  }
+
+  // ---------- selector compacto (móvil) ----------
+  var dayScroller = document.getElementById('dayScroller');
+  var days = [];
+  for (var i=0; i<21; i++){
+    var d = new Date(today);
+    d.setDate(d.getDate()+i);
+    if (HOURS[d.getDay()]) days.push(d);
+  }
+
+  function renderDays(){
+    dayScroller.innerHTML = '';
+    days.forEach(function(d){
+      var btn = document.createElement('div');
+      btn.className = 'day-box' + (state.date && dateKey(state.date)===dateKey(d) ? ' selected' : '');
+      btn.setAttribute('role','option');
+      btn.setAttribute('tabindex','0');
+      btn.innerHTML = '<span class="wd">'+WD[d.getDay()]+'</span><span class="dn">'+d.getDate()+'</span><span class="mo">'+MO[d.getMonth()]+'</span>';
+      btn.addEventListener('click', function(){ selectDate(d); });
+      btn.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectDate(d);} });
+      dayScroller.appendChild(btn);
+    });
+  }
+
+  // ---------- calendario tipo caja (desktop) ----------
+  var calState = { year: today.getFullYear(), month: today.getMonth() };
+  var calGrid = document.getElementById('calGrid');
+  var calMonthLabel = document.getElementById('calMonthLabel');
+  var calPrev = document.getElementById('calPrev');
+  var calNext = document.getElementById('calNext');
+
+  function renderCalendarGrid(){
+    calGrid.innerHTML = '';
+    var year = calState.year, month = calState.month;
+    var firstWeekday = new Date(year, month, 1).getDay();
+    var daysInMonth = new Date(year, month+1, 0).getDate();
+
+    for (var e=0; e<firstWeekday; e++){
+      var empty = document.createElement('div');
+      empty.className = 'cal-cell empty';
+      calGrid.appendChild(empty);
+    }
+    for (var day=1; day<=daysInMonth; day++){
+      var cellDate = new Date(year, month, day);
+      var cKey = dateKey(cellDate);
+      var closed = !HOURS[cellDate.getDay()];
+      var isPast = cellDate < today;
+      var isToday = cKey === dateKey(today);
+      var isSelected = state.date && dateKey(state.date) === cKey;
+
+      var cell = document.createElement('div');
+      cell.className = 'cal-cell' + ((isPast||closed) ? ' disabled' : '') + (isToday ? ' today' : '') + (isSelected ? ' selected' : '');
+      cell.textContent = day;
+      cell.setAttribute('role','option');
+      cell.dataset.y = year; cell.dataset.m = month; cell.dataset.d = day;
+      if (!isPast && !closed){
+        cell.setAttribute('tabindex','0');
+        cell.addEventListener('click', function(){ selectDate(new Date(this.dataset.y, this.dataset.m, this.dataset.d)); });
+        cell.addEventListener('keydown', function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); selectDate(new Date(this.dataset.y, this.dataset.m, this.dataset.d)); } });
+      }
+      calGrid.appendChild(cell);
+    }
+    calMonthLabel.textContent = MO_FULL(month) + ' ' + year;
+    calPrev.disabled = (year === today.getFullYear() && month === today.getMonth());
+  }
+  function changeMonth(delta){
+    var d = new Date(calState.year, calState.month + delta, 1);
+    calState.year = d.getFullYear(); calState.month = d.getMonth();
+    renderCalendarGrid();
+  }
+  calPrev.addEventListener('click', function(){ changeMonth(-1); });
+  calNext.addEventListener('click', function(){ changeMonth(1); });
+
+  // ---------- wizard ----------
+  var TOTAL_STEPS = 7;
+  var currentStep = 1;
+  var stepPanels = document.querySelectorAll('.step-panel');
+  var wizardBack = document.getElementById('wizardBack');
+  var wizardDots = document.querySelectorAll('.wdot');
+
+  function goToStep(n, opts){
+    opts = opts || {};
+    var dir = n > currentStep ? 'fwd' : 'back';
+    currentStep = n;
+    stepPanels.forEach(function(panel){
+      var isTarget = parseInt(panel.dataset.step,10) === n;
+      panel.classList.remove('dir-fwd','dir-back');
+      if (isTarget) panel.classList.add(dir==='fwd' ? 'dir-fwd' : 'dir-back');
+      panel.classList.toggle('active', isTarget);
+    });
+    wizardBack.classList.toggle('show', n>1);
+    wizardDots.forEach(function(dot){
+      var i = parseInt(dot.dataset.i,10);
+      dot.classList.toggle('done', i<n);
+      dot.classList.toggle('current', i===n);
+    });
+    if (n===4) setTimeout(function(){ custName.focus(); }, opts.silent?0:220);
+    if (n===5) setTimeout(function(){ custPhone.focus(); }, opts.silent?0:220);
+    if (n===6) setTimeout(function(){ custEmail.focus(); }, opts.silent?0:220);
+    if (!opts.silent){
+      var head = document.querySelector('.wizard-head');
+      if (head) head.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+  wizardBack.addEventListener('click', function(){ if (currentStep>1) goToStep(currentStep-1); });
+
+  function applyDateState(d){
+    state.date = d; state.time = null;
+    calState.year = d.getFullYear(); calState.month = d.getMonth();
+    renderDays(); renderCalendarGrid(); renderTimes();
+  }
+  function selectDate(d){ applyDateState(d); goToStep(2); }
+
+  // ---------- horarios ----------
+  var timeGrid = document.getElementById('timeGrid');
+  async function renderTimes(){
+    timeGrid.innerHTML = '';
+    if (!state.date) return;
+    var h = HOURS[state.date.getDay()];
+    if (!h) return;
+    var dKey = dateKey(state.date);
+    var slots = [];
+    for (var hour=h.open; hour<=h.close; hour++){
+      slots.push(hour+':00');
+      if (hour < h.close) slots.push(hour+':30');
+    }
+    var isToday = dateKey(today)===dKey;
+    var nowHour = new Date().getHours();
+    var availability = await getAvailability(dKey);
+    var lastSlot = slots[slots.length-1];
+
+    slots.forEach(function(label){
+      var slotHour = parseInt(label.split(':')[0],10);
+      var past = isToday && slotHour <= nowHour;
+      var mockTaken = (label===lastSlot) ? false : availability.isTaken(label);
+      var taken = mockTaken || past;
+      var pill = document.createElement('div');
+      pill.className = 'pill' + (taken?' taken':'') + (state.time===label?' selected':'');
+      pill.setAttribute('role','option');
+      pill.textContent = formatHour(label);
+      if (!taken){
+        pill.setAttribute('tabindex','0');
+        pill.addEventListener('click', function(){ selectTime(label); });
+        pill.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectTime(label);} });
+      }
+      timeGrid.appendChild(pill);
+    });
+  }
+  function formatHour(label){
+    var p = label.split(':'); var h = parseInt(p[0],10); var m = p[1];
+    var suf = h>=12 ? 'PM' : 'AM'; var h12 = h%12===0 ? 12 : h%12;
+    return h12+':'+m+' '+suf;
+  }
+  function selectTime(label){ state.time = label; renderTimes(); goToStep(3); }
+
+  // ---------- motivo de consulta ----------
+  var svcList = document.getElementById('svcList');
+  function renderServices(){
+    svcList.innerHTML = '';
+    SERVICES.forEach(function(s){
+      var row = document.createElement('div');
+      row.className = 'svc' + (state.service && state.service.id===s.id ? ' selected' : '');
+      row.setAttribute('role','option');
+      row.setAttribute('tabindex','0');
+      row.innerHTML = '<span class="svc-icon">'+ICONS[s.icon]+'</span><span class="svc-name">'+s.name+'</span>';
+      row.addEventListener('click', function(){ selectService(s); });
+      row.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); selectService(s);} });
+      svcList.appendChild(row);
+    });
+  }
+  function selectService(s){ state.service = s; renderServices(); goToStep(4); }
+
+  // ---------- lista de servicios (sección informativa) ----------
+  var svcGridDisplay = document.getElementById('svcGridDisplay');
+  SERVICES.forEach(function(s){
+    var row = document.createElement('div');
+    row.className = 'svc-row';
+    row.innerHTML = '<span class="svc-icon">'+ICONS[s.icon]+'</span><div><div class="name">'+s.name+'</div><div class="desc">'+s.desc+'</div></div>';
+    svcGridDisplay.appendChild(row);
+  });
+
+  // ---------- horario (tabla) ----------
+  var hoursTable = document.getElementById('hoursTable');
+  var order = [1,2,3,4,5,6,0];
+  order.forEach(function(wd){
+    var h = HOURS[wd];
+    var tr = document.createElement('tr');
+    var label = h ? (formatHour(h.open+':00') + '–' + formatHour(h.close+':00')) : 'Cerrado';
+    tr.innerHTML = '<td>'+WD_FULL[wd]+'</td><td>'+label+'</td>';
+    hoursTable.appendChild(tr);
+  });
+
+  // ---------- nombre / teléfono / correo ----------
+  var summaryText = document.getElementById('summaryText');
+  var ctaBook = document.getElementById('ctaBook');
+  var monthLabel = document.getElementById('monthLabel');
+  var todayLabel = document.getElementById('todayLabel');
+  var custName = document.getElementById('custName');
+  var custPhone = document.getElementById('custPhone');
+  var custEmail = document.getElementById('custEmail');
+  var nameContinue = document.getElementById('nameContinue');
+  var phoneContinue = document.getElementById('phoneContinue');
+  var emailContinue = document.getElementById('emailContinue');
+
+  custName.addEventListener('input', function(e){ state.name = e.target.value.trim(); nameContinue.disabled = !state.name; });
+  custName.addEventListener('keydown', function(e){ if(e.key==='Enter' && state.name){ e.preventDefault(); goToStep(5);} });
+  nameContinue.addEventListener('click', function(){ if(state.name) goToStep(5); });
+
+  custPhone.addEventListener('input', function(e){ state.phone = e.target.value.trim(); phoneContinue.disabled = !state.phone; });
+  custPhone.addEventListener('keydown', function(e){ if(e.key==='Enter' && state.phone){ e.preventDefault(); goToStep(6);} });
+  phoneContinue.addEventListener('click', function(){ if(state.phone) goToStep(6); });
+
+  custEmail.addEventListener('input', function(e){ state.email = e.target.value.trim(); emailContinue.disabled = !state.email; });
+  custEmail.addEventListener('keydown', function(e){ if(e.key==='Enter' && state.email){ e.preventDefault(); updateSummary(); goToStep(7);} });
+  emailContinue.addEventListener('click', function(){ if(state.email){ updateSummary(); goToStep(7);} });
+
+  function updateSummary(){
+    var dStr = WD_FULL[state.date.getDay()]+' '+state.date.getDate()+' de '+MO_FULL(state.date.getMonth());
+    summaryText.innerHTML = '<b>'+state.service.name+'</b> · '+dStr+' · <b>'+formatHour(state.time)+'</b>';
+  }
+  function MO_FULL(i){
+    var names = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    return names[i];
+  }
+
+  var ctaLabel = document.getElementById('ctaLabel');
+  ctaBook.addEventListener('click', async function(){
+    if (ctaBook.disabled) return;
+    var payload = { date: dateKey(state.date), time: state.time, serviceId: state.service.id, name: state.name, phone: state.phone, email: state.email };
+    ctaBook.disabled = true;
+    ctaLabel.textContent = 'Reservando…';
+    try {
+      var res = await fetch('/api/book', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+      var data = await res.json().catch(function(){ return {}; });
+      if (res.ok && data.ok){
+        var dStr = WD_FULL[state.date.getDay()]+' '+state.date.getDate()+' de '+MO_FULL(state.date.getMonth());
+        summaryText.innerHTML = '<b>¡Listo!</b> Tu cita quedó agendada para el '+dStr+' a las '+formatHour(state.time)+'.';
+        ctaLabel.textContent = 'Reservado ✓';
+        return;
+      }
+      if (res.status===409){
+        summaryText.textContent = 'Ese horario se acaba de ocupar. Elige otro horario.';
+        state.time = null; renderTimes();
+        ctaLabel.textContent = 'Confirmar cita';
+        ctaBook.disabled = false;
+        goToStep(2);
+        return;
+      }
+      throw new Error((data && data.error) || 'request_failed');
+    } catch (err){
+      summaryText.innerHTML = 'La reserva en línea se activa en cuanto conectemos el backend. Mientras tanto, llámanos al <a href="tel:6461562917" style="color:var(--teal);font-weight:700;">646 156 2917</a>.';
+      ctaLabel.textContent = 'Confirmar cita';
+      ctaBook.disabled = false;
+    }
+  });
+
+  monthLabel.textContent = MO[today.getMonth()] + ' ' + today.getFullYear();
+  todayLabel.textContent = 'Próximos días disponibles';
+
+  renderServices();
+  applyDateState(nextOpenDay(today));
+  goToStep(1, {silent:true});
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+})();
+</script>
+</body>
+</html>
